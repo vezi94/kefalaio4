@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ασφάλεια και Υγιεινή Τροφίμων - Κεφάλαιο 4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: #3498db;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .tab-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: #e74c3c;
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #e74c3c;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        h4 {
+            color: #2c3e50;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .card.warning {
+            border-left-color: #e74c3c;
+            background: #ffeaa7;
+        }
+
+        .card.success {
+            border-left-color: #27ae60;
+            background: #d5f4e6;
+        }
+
+        .card.info {
+            border-left-color: #3498db;
+            background: #e8f4fc;
+        }
+
+        .haccp-principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .principle {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid #3498db;
+        }
+
+        .principle-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hazard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .hazard-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .hazard-card.biological {
+            border-top: 4px solid #e74c3c;
+        }
+
+        .hazard-card.chemical {
+            border-top: 4px solid #f39c12;
+        }
+
+        .hazard-card.physical {
+            border-top: 4px solid #9b59b6;
+        }
+
+        .example-box {
+            background: #e8f4fc;
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #3498db;
+        }
+
+        .example-title {
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-box {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .quiz-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+            margin: 1rem 0;
+        }
+
+        .option {
+            padding: 12px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: #3498db;
+            background: #e8f4fc;
+        }
+
+        .option.selected {
+            border-color: #27ae60;
+            background: #d5f4e6;
+        }
+
+        .option.correct {
+            border-color: #27ae60;
+            background: #d5f4e6;
+        }
+
+        .option.incorrect {
+            border-color: #e74c3c;
+            background: #ffeaa7;
+        }
+
+        .submit-btn {
+            background: #27ae60;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+        }
+
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .result.success {
+            background: #d5f4e6;
+            color: #27ae60;
+        }
+
+        .result.error {
+            background: #ffeaa7;
+            color: #e74c3c;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ασφάλεια και Υγιεινή Τροφίμων και Ποτών</h1>
+            <div class="subtitle">Κεφάλαιο 4 - Λεπτομερής Διαδραστική Ανασκόπηση</div>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showSection('intro')">Εισαγωγή</button>
+            <button class="tab-btn" onclick="showSection('haccp')">Σύστημα HACCP</button>
+            <button class="tab-btn" onclick="showSection('hazards')">Είδη Κινδύνων</button>
+            <button class="tab-btn" onclick="showSection('prerequisites')">Προαπαιτούμενα</button>
+            <button class="tab-btn" onclick="showSection('quiz')">Quiz Αξιολόγησης</button>
+        </div>
+
+        <!-- Εισαγωγή -->
+        <section id="intro" class="content-section active">
+            <h2>Εισαγωγή στην Ασφάλεια Τροφίμων</h2>
+            
+            <div class="card">
+                <p>Η ασφάλεια των τροφίμων είναι το σύνολο των μέτρων που εφαρμόζονται σε όλη την αλυσίδα παραγωγής - από το χωράφι μέχρι το τραπέζι - για να διασφαλιστεί ότι τα τρόφιμα δεν θα προκαλέσουν βλάβη στον καταναλωτή.</p>
+            </div>
+
+            <h3>Βασικές Αρχές Ασφάλειας Τροφίμων</h3>
+            
+            <div class="card info">
+                <h4>Πρόληψη αντί Θεραπείας</h4>
+                <p>Το σύστημα HACCP είναι προληπτικό - στοχεύει στην πρόληψη προβλημάτων πριν αυτά εμφανιστούν, αντί να τα αντιμετωπίζει μετά τη γέννησή τους.</p>
+            </div>
+
+            <div class="card info">
+                <h4>Επιστημονική Προσέγγιση</h4>
+                <p>Όλες οι αποφάσεις βασίζονται σε επιστημονικά δεδομένα και τεκμηριωμένες διαδικασίες.</p>
+            </div>
+
+            <div class="card info">
+                <h4>Συνεχής Βελτίωση</h4>
+                <p>Το σύστημα αξιολογείται συνεχώς και βελτιώνεται με βάση νέα δεδομένα και εμπειρία.</p>
+            </div>
+
+            <div class="hazard-grid">
+                <div class="hazard-card biological">
+                    <h3>Βιολογικοί Κίνδυνοι</h3>
+                    <p>Μικροοργανισμοί που μπορούν να προκαλέσουν ασθένειες ή αλλοιώσεις</p>
+                </div>
+                <div class="hazard-card chemical">
+                    <h3>Χημικοί Κίνδυνοι</h3>
+                    <p>Χημικές ουσίες που μπορούν να είναι τοξικές ή επιβλαβείς</p>
+                </div>
+                <div class="hazard-card physical">
+                    <h3>Φυσικοί Κίνδυνοι</h3>
+                    <p>Ξένα σώματα που μπορούν να προκαλέσουν τραυματισμούς</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">📋 Πρακτικό Παράδειγμα:</div>
+                <p><strong>Σενάριο:</strong> Εστιατόριο που ετοιμάζει σαλάτες με ωμά λαχανικά</p>
+                <p><strong>Κίνδυνος:</strong> Βιολογικός - πιθανή μόλυνση από E. coli</p>
+                <p><strong>Προληπτικά Μέτρα:</strong></p>
+                <ul>
+                    <li>Πλύσιμο λαχανικών με πόσιμο νερό</li>
+                    <li>Χρήση απολυμαντικών κατάλληλων για τρόφιμα</li>
+                    <li>Διαχωρισμός επιφανειών για ωμά και έτοιμα προϊόντα</li>
+                    <li>Έλεγχος θερμοκρασίας ψυγείου (<5°C)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Σύστημα HACCP -->
+        <section id="haccp" class="content-section">
+            <h2>Το Σύστημα HACCP - Λεπτομερής Ανάλυση</h2>
+            
+            <div class="card">
+                <p>Το <strong>HACCP</strong> (Hazard Analysis Critical Control Points) είναι ένα επιστημονικά βασισμένο σύστημα που αναπτύχθηκε αρχικά για το διαστημικό πρόγραμμα της NASA. Σήμερα αποτελεί διεθνές πρότυπο για τη διασφάλιση ασφάλειας τροφίμων.</p>
+            </div>
+
+            <h3>Οι 7 Αρχές του HACCP - Λεπτομερής Επεξήγηση</h3>
+            <div class="haccp-principles">
+                <div class="principle">
+                    <div class="principle-number">1</div>
+                    <h4>Ανάλυση Κινδύνων</h4>
+                    <p><strong>Σκοπός:</strong> Προσδιορισμός όλων των πιθανών κινδύνων σε κάθε στάδιο παραγωγής</p>
+                    <p><strong>Διαδικασία:</strong> Συλλογή δεδομένων, αξιολόγηση πιθανότητας και σοβαρότητας</p>
+                    <div class="detail-box">
+                        <strong>Παράδειγμα:</strong> Σε κονσερβοποιείο - κίνδυνος από Clostridium botulinum σε κονσέρβες με χαμηλή οξύτητα
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-number">2</div>
+                    <h4>Καθορισμός CCP</h4>
+                    <p><strong>Σκοπός:</strong> Εντοπισμός σημείων όπου ο έλεγχος είναι απαραίτητος</p>
+                    <p><strong>Κριτήρια:</strong> Σημεία όπου μπορεί να εξαλειφθεί, αποφευχθεί ή μειωθεί σημαντικά ένας κίνδυνος</p>
+                    <div class="detail-box">
+                        <strong>Παράδειγμα:</strong> Θερμική επεξεργασία (παστεύρωση) στο γαλακτοκομείο
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-number">3</div>
+                    <h4>Κρίσιμα Όρια</h4>
+                    <p><strong>Σκοπός:</strong> Καθορισμός μετρήσιμων ορίων για κάθε CCP</p>
+                    <p><strong>Παράμετροι:</strong> Θερμοκρασία, χρόνος, pH, υγρασία, ορατές παραμέτρους</p>
+                    <div class="detail-box">
+                        <strong>Παράδειγμα:</strong> Παστεύρωση γάλακτος: 72°C για 15 δευτερόλεπτα
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-number">4</div>
+                    <h4>Παρακολούθηση</h4>
+                    <p><strong>Σκοπός:</strong> Συστηματικός έλεγχος των CCP</p>
+                    <p><strong>Μέθοδοι:</strong> Συνέχεις ή περιοδικές μετρήσεις, καταγραφή αποτελεσμάτων</p>
+                    <div class="detail-box">
+                        <strong>Παράδειγμα:</strong> Ηλεκτρονικό θερμόμετρο με καταγραφή θερμοκρασίας κάθε 5 λεπτά
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-number">5</div>
+                    <h4>Διορθωτικές Ενέργειες</h4>
+                    <p><strong>Σκοπός:</strong> Ενέργειες όταν παραβιάζονται τα κρίσιμα όρια</p>
+                    <p><strong>Τύποι:</strong> Απόρριψη προϊόντων, επαναεπεξεργασία, διόρθωση διαδικασίας</p>
+                    <div class="detail-box">
+                        <strong>Παράδειγμα:</strong> Επαναπαστεύρωση όταν η θερμοκρασία είναι <72°C
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-number">6</div>
+                    <h4>Επαλήθευση</h4>
+                    <p><strong>Σκοπός:</strong> Επιβεβαίωση της αποτελεσματικότητας του συστήματος</p>
+                    <p><strong>Μέθοδοι:</strong> Εσωτερικοί έλεγχοι, δειγματοληψία, ανασκόπηση αρχείων</p>
+                    <div class="detail-box">
+                        <strong>Παράδειγμα:</strong> Μηνιαίος μικροβιολογικός έλεγχος τελικών προϊόντων
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-number">7</div>
+                    <h4>Τεκμηρίωση</h4>
+                    <p><strong>Σκοπός:</strong> Δημιουργία αρχείου απόδειξης συμμόρφωσης</p>
+                    <p><strong>Περιεχόμενο:</strong> Διαγράμματα ροής, αρχεία παρακολούθησης, αναφορές</p>
+                    <div class="detail-box">
+                        <strong>Παράδειγμα:</strong> Ημερήσια αρχεία θερμοκρασιών παστεύρωσης για 2 χρόνια
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">🏭 Πρακτική Εφαρμογή HACCP σε Μονάδα Παραγωγής Χυμών:</div>
+                
+                <h4>Στάδιο 1: Παραλαβή φρούτων</h4>
+                <p><strong>CCP:</strong> Έλεγχος ποιότητας πρώτων υλών</p>
+                <p><strong>Κρίσιμο Όριο:</strong> Απουσία ορατών φθορών, μούχλας</p>
+                <p><strong>Παρακολούθηση:</strong> Οπτικός έλεγχος 100% των φρούτων</p>
+                
+                <h4>Στάδιο 2: Πλύσιμο και απολύμανση</h4>
+                <p><strong>CCP:</strong> Συγκέντρωση απολυμαντικού</p>
+                <p><strong>Κρίσιμο Όριο:</strong> 100-200 ppm χλωρίου</p>
+                <p><strong>Παρακολούθηση:</strong> Έλεγχος συγκέντρωσης κάθε 2 ώρες</p>
+                
+                <h4>Στάδιο 3: Παστεύρωση</h4>
+                <p><strong>CCP:</strong> Θερμοκρασία και χρόνος επεξεργασίας</p>
+                <p><strong>Κρίσιμο Όριο:</strong> 85°C για 30 δευτερόλεπτα</p>
+                <p><strong>Παρακολούθηση:</strong> Αυτόματος έλεγχος θερμοκρασίας</p>
+            </div>
+        </section>
+
+        <!-- Είδη Κινδύνων -->
+        <section id="hazards" class="content-section">
+            <h2>Είδη Κινδύνων στα Τρόφιμα - Λεπτομερής Ανάλυση</h2>
+
+            <h3>Βιολογικοί Κίνδυνοι</h3>
+            <div class="card">
+                <h4>Παθογόνα Βακτήρια - Λεπτομέρειες:</h4>
+                <div class="detail-box">
+                    <strong>Salmonella spp.</strong>
+                    <p><strong>Πηγές:</strong> Ωμά αυγά, πουλερικά, γαλακτοκομικά</p>
+                    <p><strong>Συμπτώματα:</strong> Γαστρεντερίτιδα, πυρετός, ναυτία</p>
+                    <p><strong>Πρόληψη:</strong> Ολοκληρωμένη θερμική επεξεργασία (>70°C), αποφυγή διασταυρούμενης μόλυνσης</p>
+                </div>
+
+                <div class="detail-box">
+                    <strong>Listeria monocytogenes</strong>
+                    <p><strong>Πηγές:</strong> Πρότυπα τρόφιμα, αλλαντικά, μαλακά τυριά</p>
+                    <p><strong>Ιδιαιτερότητα:</strong> Αναπτύσσεται σε ψυκτικά (<4°C)</p>
+                    <p><strong>Πρόληψη:</strong> Έλεγχος θερμοκρασίας ψυγείου, περιορισμός χρόνου αποθήκευσης</p>
+                </div>
+
+                <div class="detail-box">
+                    <strong>E. coli O157:H7</strong>
+                    <p><strong>Πηγές:</strong> Αψημένο κρέας, μη παστεριωμένο γάλα</p>
+                    <p><strong>Κίνδυνος:</strong> Νεφρική ανεπάρκεια σε ευάλωτους πληθυσμούς</p>
+                    <p><strong>Πρόληψη:</strong> Θερμική επεξεργασία, αποφυγή διασταυρούμενης μόλυνσης</p>
+                </div>
+            </div>
+
+            <h3>Χημικοί Κίνδυνοι</h3>
+            <div class="card">
+                <h4>Κύριες Κατηγορίες - Λεπτομέρειες:</h4>
+                
+                <div class="detail-box">
+                    <strong>Φυτοφάρμακα και Υπολείμματά τους</strong>
+                    <p><strong>Πηγές:</strong> Φρούτα, λαχανικά, δημητριακά</p>
+                    <p><strong>Κίνδυνος:</strong> Χρόνια τοξικότητα, νευρολογικές επιπτώσεις</p>
+                    <p><strong>Πρόληψη:</strong> Σωστό πλύσιμο, επιλογή πιστοποιημένων προμηθευτών</p>
+                </div>
+
+                <div class="detail-box">
+                    <strong>Βαρέα Μέταλλα</strong>
+                    <p><strong>Πηγές:</strong> Θαλασσινά (μύδια, στρείδια), ηπατοπαραγωγά</p>
+                    <p><strong>Κίνδυνος:</strong> Νευροτοξικότητα, καρκινογένεση</p>
+                    <p><strong>Πρόληψη:</strong> Έλεγχος προέλευσης, περιορισμός κατανάλωσης</p>
+                </div>
+
+                <div class="detail-box">
+                    <strong>Μυκοτοξίνες</strong>
+                    <p><strong>Πηγές:</strong> Ξηροί καρποί, δημητριακά, μπαχαρικά</p>
+                    <p><strong>Κίνδυνος:</strong> Ηπατική βλάβη, καρκινογένεση</p>
+                    <p><strong>Πρόληψη:</strong> Έλεγχος υγρασίας αποθήκευσης, οπτικός έλεγχος</p>
+                </div>
+            </div>
+
+            <h3>Φυσικοί Κίνδυνοι</h3>
+            <div class="card">
+                <h4>Συνηθισμένα Ξένα Σώματα - Λεπτομέρειες:</h4>
+                
+                <div class="detail-box">
+                    <strong>Θραύσματα Γυαλιού</strong>
+                    <p><strong>Πηγές:</strong> Συσκευασίες, φωτιστικά, όργανα μέτρησης</p>
+                    <p><strong>Πρόληψη:</strong> Χρήση πλαστικών συσκευασιών, προληπτική συντήρηση</p>
+                </div>
+
+                <div class="detail-box">
+                    <strong>Μεταλλικά Τμήματα</strong>
+                    <p><strong>Πηγές:</strong> Εξοπλισμός παραγωγής, εργαλεία, συσκευασίες</p>
+                    <p><strong>Πρόληψη:</strong> Ανιχνευτές μετάλλων, μαγνητικοί διαχωριστές</p>
+                </div>
+
+                <div class="detail-box">
+                    <strong>Πέτρες και Ξύλο</strong>
+                    <p><strong>Πηγές:</strong> Πρώτες ύλες (δημητριακά, όσπρια)</p>
+                    <p><strong>Πρόληψη:</strong> Κοσκίνισμα, οπτικός έλεγχος, χρήση διηθητικών</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">🔍 Πρακτικό Παράδειγμα Ανάλυσης Κινδύνων:</div>
+                
+                <p><strong>Προϊόν:</strong> Σάντουιτς με γαλοπούλα και μαρούλι</p>
+                
+                <h4>Βιολογικοί Κίνδυνοι:</h4>
+                <ul>
+                    <li><strong>Listeria:</strong> Από την έτοιμη γαλοπούλα (CCP: Έλεγχος θερμοκρασίας ψυγείου)</li>
+                    <li><strong>E. coli:</strong> Από το ωμό μαρούλι (CCP: Πλύσιμο και απολύμανση)</li>
+                </ul>
+                
+                <h4>Χημικοί Κίνδυνοι:</h4>
+                <ul>
+                    <li><strong>Φυτοφάρμακα:</strong> Από το μαρούλι (CCP: Επιλογή πιστοποιημένων προμηθευτών)</li>
+                </ul>
+                
+                <h4>Φυσικοί Κίνδυνοι:</h4>
+                <ul>
+                    <li><strong>Μεταλλικά θραύσματα:</strong> Από τον εξοπλισμό κοπής (CCP: Ανιχνευτής μετάλλων)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Προαπαιτούμενα -->
+        <section id="prerequisites" class="content-section">
+            <h2>Προαπαιτούμενα Προγράμματα - Θεμέλιο του HACCP</h2>
+
+            <div class="card">
+                <p>Τα προαπαιτούμενα προγράμματα αποτελούν το βασικό πλαίσιο υγιεινής που πρέπει να λειτουργεί πριν την εφαρμογή του HACCP. Χωρίς αυτά, το σύστημα HACCP δεν μπορεί να είναι αποτελεσματικό.</p>
+            </div>
+
+            <h3>Βασικά Προαπαιτούμενα - Λεπτομερής Ανάλυση</h3>
+            <div class="haccp-principles">
+                <div class="principle">
+                    <h4>Καθαρισμός & Απολύμανση</h4>
+                    <p><strong>Σκοπός:</strong> Πρόληψη μικροβιακής μόλυνσης</p>
+                    <p><strong>Διαδικασία:</strong> Καθαρισμός → Απόπλυση → Απολύμανση → Τελικό ξέβγαλμα</p>
+                    <div class="detail-box">
+                        <strong>Παράδειγμα:</strong> Καθαρισμός κοπτήρα κρέατος:
+                        <ul>
+                            <li>Προκαταρκτικό καθαρισμό</li>
+                            <li>Απολύμανση με διάλυμα χλωρίου 200 ppm</li>
+                            <li>Ξέβγαλμα με πόσιμο νερό</li>
+                            <li>Αποστείρωση με ζεστό ατμό</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <h4>Προσωπική Υγιεινή</h4>
+                    <p><strong>Σκοπός:</strong> Πρόληψη μόλυνσης από προσωπικό</p>
+                    <p><strong>Απαιτήσεις:</strong> Ενδύματα, πλύσιμο χεριών, έλεγχος υγείας</p>
+                    <div class="detail-box">
+                        <strong>Παράδειγμα:</strong> Πρωτόκολλο πλυσίματος χεριών:
+                        <ul>
+                            <li>Βρέχειτε τα χέρια με ζεστό νερό</li>
+                            <li>Απλώστε σαπούνι</li>
+                            <li>Τρίψτε για 20 δευτερόλεπτα</li>
+                            <li>Ξεπλύνετε καλά</li>
+                            <li>Στεγνώστε με χαρτί</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <h4>Έλεγχος Παρασίτων</h4>
+                    <p><strong>Σκοπός:</strong> Πρόληψη μόλυνσης από έντομα και τρωκτικά</p>
+                    <p><strong>Μέθοδοι:</strong> Φυσικοί φραγμοί, παγίδες, χημικοί έλεγχοι</p>
+                    <div class="detail-box">
+                        <strong>Παράδειγμα:</strong> Πρόγραμμα έλεγχου παρασίτων:
+                        <ul>
+                            <li>Μηνιαίος έλεγχος παγίδων</li>
+                            <li>Αδιάβροχες πόρτες</li>
+                            <li>Δικτυώματα σε παράθυρα</li>
+                            <li>Καθαρός χώρος γύρω από το κτίριο</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <h4>Συντήρηση Εξοπλισμού</h4>
+                    <p><strong>Σκοπός:</strong> Αποφυγή μηχανικών βλαβών και μολύνσεων</p>
+                    <p><strong>Δραστηριότητες:</strong> Προγραμματισμένη συντήρηση, επιθεωρήσεις</p>
+                    <div class="detail-box">
+                        <strong>Παράδειγμα:</strong> Συντήρηση ψυκτικού συστήματος:
+                        <ul>
+                            <li>Καθημερινός έλεγχος θερμοκρασίας</li>
+                            <li>Εβδομαδιαίος καθαρισμός πάνελ</li>
+                            <li>Μηνιαίος έλεγχος πηκτών</li>
+                            <li>Ετήσια σέρβις από τεχνικό</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">🏪 Πρακτική Εφαρμογή σε Ζαχαροπλαστείο:</div>
+                
+                <h4>Προαπαιτούμενα Προγράμματα:</h4>
+                
+                <div class="detail-box">
+                    <strong>1. Καθαρισμός Εξοπλισμού</strong>
+                    <p><strong>Ανάμικτης ζύμης:</strong> Καθαρισμός μετά από κάθε χρήση, απολύμανση κάθε βάρδια</p>
+                    <p><strong>Φούρνου:</strong> Καθαρισμός εβδομαδιαίος, αποκάπνισμα μηνιαίο</p>
+                </div>
+                
+                <div class="detail-box">
+                    <strong>2. Προσωπική Υγιεινή</strong>
+                    <p><strong>Ενδυμασία:</strong> Αποκλειστική χρήση στο εργαστήριο, καθημερινή αλλαγή</p>
+                    <p><strong>Πρόσβαση:</strong> Απαγόρευση πρόσβασης σε εξωτερικούς επισκέπτες</p>
+                </div>
+                
+                <div class="detail-box">
+                    <strong>3. Έλεγχος Παρασίτων</strong>
+                    <p><strong>Παγίδες:</strong> Στρατηγική τοποθέτηση σε σημεία εισόδου</p>
+                    <p><strong>Αποθήκευση:</strong> Συσκευασμένα υλικά σε αδιάβροχα δοχεία</p>
+                </div>
+            </div>
+
+            <div class="card success">
+                <h3>Σημαντικές Πρακτικές για Αποτελεσματικά Προαπαιτούμενα</h3>
+                <ul>
+                    <li><strong>Εκπαίδευση Προσωπικού:</strong> Τακτικά προγράμματα εκπαίδευσης και ενημέρωσης</li>
+                    <li><strong>Τεκμηρίωση:</strong> Σαφή και αναλυτικά γραπτά πρωτόκολλα</li>
+                    <li><strong>Επιθεωρήσεις:</strong> Τακτικοί εσωτερικοί έλεγχοι</li>
+                    <li><strong>Συνεχής Βελτίωση:</strong> Αναθεώρηση βάσει νέων δεδομένων</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Quiz -->
+        <section id="quiz" class="content-section">
+            <h2>Quiz Αξιολόγησης Γνώσεων - Κεφάλαιο 4</h2>
+            
+            <div class="quiz-container">
+                <div class="question">
+                    <h3>Ερώτηση 1: Τι σημαίνει το ακρωνύμιο HACCP και ποιος είναι ο κύριος σκοπός του;</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this)">Hazard Analysis and Critical Control Points - Πρόληψη κινδύνων ασφάλειας τροφίμων</div>
+                        <div class="option" onclick="selectOption(this)">Health and Control of Critical Products - Βελτίωση της θρεπτικής αξίας</div>
+                        <div class="option" onclick="selectOption(this)">Hygiene Analysis and Cooking Control Procedures - Έλεγχος ποιότητας υλικών</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>Ερώτηση 2: Ποια από τα παρακάτω αποτελεί βιολογικό κίνδυνο και πώς προλαμβάνεται;</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this)">Σαλμονέλα - Θερμική επεξεργασία >70°C και αποφυγή διασταυρούμενης μόλυνσης</div>
+                        <div class="option" onclick="selectOption(this)">Θραύσμα γυαλιού - Χρήση ανιχνευτών μετάλλων και οπτικός έλεγχος</div>
+                        <div class="option" onclick="selectOption(this)">Φυτοφάρμακο - Σωστό πλύσιμο και επιλογή πιστοποιημένων προμηθευτών</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>Ερώτηση 3: Πόσες αρχές έχει το σύστημα HACCP και ποια είναι η σημασία της 3ης αρχής;</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this)">7 αρχές - 3η αρχή: Καθορισμός κρίσιμων ορίων (μετρήσιμων παραμέτρων)</div>
+                        <div class="option" onclick="selectOption(this)">5 αρχές - 3η αρχή: Παρακολούθηση των διαδικασιών παραγωγής</div>
+                        <div class="option" onclick="selectOption(this)">10 αρχές - 3η αρχή: Έλεγχος της ποιότητας πρώτων υλών</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>Ερώτηση 4: Τι είναι τα CCP στο πλαίσιο του HACCP και ποιο κριτήριο χρησιμοποιείται για τον προσδιορισμό τους;</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this)">Κρίσιμα Σημεία Ελέγχου - Σημεία όπου μπορεί να εξαλειφθεί ή μειωθεί σημαντικά ένας κίνδυνος</div>
+                        <div class="option" onclick="selectOption(this)">Κεντρικά Σημεία Παραγωγής - Σημεία με την μεγαλύτερη παραγωγική απόδοση</div>
+                        <div class="option" onclick="selectOption(this)">Κύρια Στάδια Ελέγχου - Όλα τα σημεία του παραγωγικού κύκλου</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>Ερώτηση 5: Ποιο από τα παρακάτω είναι παράδειγμα φυσικού κινδύνου και πώς αντιμετωπίζεται στην βιομηχανία τροφίμων;</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this)">Μεταλλικό θραύσμα - Ανιχνευτές μετάλλων, μαγνητικοί διαχωριστές</div>
+                        <div class="option" onclick="selectOption(this)">Βακτήριο Λιστέρια - Έλεγχος θερμοκρασίας ψυγείου, περιορισμός χρόνου αποθήκευσης</div>
+                        <div class="option" onclick="selectOption(this)">Αφλατοξίνη - Έλεγχος υγρασίας αποθήκευσης, οπτικός έλεγχος πρώτων υλών</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>Ερώτηση 6: Ποια είναι η σημασία των προαπαιτούμενων προγραμμάτων στο πλαίσιο του HACCP;</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this)">Αποτελούν το βασικό πλαίσιο υγιεινής που πρέπει να λειτουργεί πριν την εφαρμογή του HACCP</div>
+                        <div class="option" onclick="selectOption(this)">Είναι προαιρετικά προγράμματα που βελτιώνουν την αποδοτικότητα</div>
+                        <div class="option" onclick="selectOption(this)">Αφορούν αποκλειστικά την διαχείριση του ανθρώπινου δυναμικού</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>Ερώτηση 7: Σε μια μονάδα παραγωγής χυμών, ποιο θα μπορούσε να είναι ένα CCP και ποια τα κρίσιμα όριά του;</h3>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(this)">Θερμική επεξεργασία (παστεύρωση) - 85°C για 30 δευτερόλεπτα</div>
+                        <div class="option" onclick="selectOption(this)">Συσκευασία προϊόντος - Χρήση γυάλινων φιαλών</div>
+                        <div class="option" onclick="selectOption(this)">Εμφιάλωση προϊόντος - Ταχύτητα γραμμής 1000 μπουκάλια/ώρα</div>
+                    </div>
+                </div>
+
+                <button class="submit-btn" onclick="checkQuiz()">Υποβολή Απαντήσεων</button>
+                <div id="quiz-result" class="result"></div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Απόκρυψη όλων των ενοτήτων
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Εμφάνιση της επιλεγμένης ενότητας
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Ενημέρωση ενεργών tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function selectOption(option) {
+            const options = option.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+        }
+
+        function checkQuiz() {
+            const correctAnswers = [
+                0, // HACCP
+                0, // Σαλμονέλα
+                0, // 7 αρχές - 3η αρχή
+                0, // Κρίσιμα Σημεία Ελέγχου
+                0, // Μεταλλικό θραύσμα
+                0, // Προαπαιτούμενα προγράμματα
+                0  // Παστεύρωση χυμών
+            ];
+
+            let score = 0;
+            const questions = document.querySelectorAll('.question');
+            
+            questions.forEach((question, index) => {
+                const options = question.querySelectorAll('.option');
+                const selected = question.querySelector('.option.selected');
+                
+                if (selected) {
+                    const selectedIndex = Array.from(options).indexOf(selected);
+                    if (selectedIndex === correctAnswers[index]) {
+                        selected.classList.add('correct');
+                        score++;
+                    } else {
+                        selected.classList.add('incorrect');
+                        options[correctAnswers[index]].classList.add('correct');
+                    }
+                }
+            });
+
+            const result = document.getElementById('quiz-result');
+            const percentage = (score / questions.length) * 100;
+            
+            if (percentage >= 80) {
+                result.className = 'result success';
+                result.innerHTML = `Συγχαρητήρια! Πέρασες με ${percentage.toFixed(0)}% (${score}/${questions.length} σωστές απαντήσεις)<br>Έχεις εξαιρετική κατανόηση του κεφαλαίου!`;
+            } else if (percentage >= 60) {
+                result.className = 'result success';
+                result.innerHTML = `Καλή προσπάθεια! ${percentage.toFixed(0)}% (${score}/${questions.length} σωστές απαντήσεις)<br>Χρειάζεσαι λίγη ακόμα μελέτη.`;
+            } else {
+                result.className = 'result error';
+                result.innerHTML = `Χρειάζεσαι περισσότερη μελέτη. Σκορ: ${percentage.toFixed(0)}% (${score}/${questions.length} σωστές απαντήσεις)<br>Συμβουλευτείτε ξανά το υλικό του κεφαλαίου.`;
+            }
+
+            // Κύλιση στο αποτέλεσμα
+            result.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Προσθήκη διαδραστικότητας για τα hazard cards
+        document.querySelectorAll('.hazard-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Προσθήκη διαδραστικότητας για τις κάρτες αρχών
+        document.querySelectorAll('.principle').forEach(principle => {
+            principle.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            });
+            
+            principle.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+            });
+        });
+    </script>
+</body>
+</html>
